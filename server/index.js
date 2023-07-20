@@ -1,11 +1,17 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
-require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 const { MONGO_URL, PORT } = process.env;
+
+if (!MONGO_URL || !PORT) {
+  console.error("Error: MONGO_URL and PORT environment variables are required.");
+  process.exit(1);
+}
 
 mongoose
   .connect(MONGO_URL, {
