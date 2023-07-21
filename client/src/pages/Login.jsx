@@ -29,6 +29,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Submit button clicked."); // Notify in the console panel
     try {
       const { data } = await axios.post(
         "http://localhost:4000/login",
@@ -48,9 +49,11 @@ const Login = () => {
         handleError(message);
       }
     } catch (error) {
+      console.log("HandleSubmit failed");
       console.log(error);
     }
     setInputValue({
+      ...inputValue,
       email: "",
       password: "",
     });
